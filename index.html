@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayuda Venezuela · Terremoto 2026 — Toda la ayuda en un solo lugar</title>
+<meta name="description" content="Directorio verificado de ayuda tras los terremotos del 24 de junio de 2026 en Venezuela: buscar personas, donar seguro, hospitales, centros de acopio, voluntarios y emergencia. Iniciativa ciudadana.">
+<meta name="theme-color" content="#003DA5">
+<meta property="og:title" content="Ayuda Venezuela · Terremoto 2026">
+<meta property="og:description" content="Toda la ayuda verificada en un solo lugar: buscar personas, donar seguro, hospitales, acopio, voluntarios y emergencia.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_VE">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='33' y='0' fill='%23FCD116'/><rect width='100' height='34' y='33' fill='%23003DA5'/><rect width='100' height='33' y='67' fill='%23CF142B'/></svg>">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --ink:#16202c; --muted:#46505f; --bg:#f6f8fb; --card:#ffffff;
+    --line:#e4e8ee; --accent:#0a5bd6; --accent-d:#08409a;
+    --emer:#d12b2b; --emer-d:#a31f1f; --warn-bg:#fff7ed; --warn-line:#fed7aa; --warn-ink:#9a3412;
+    --ok:#137a43; --ok-bg:#e9f7ef; --ve-y:#FCD116; --ve-b:#003DA5; --ve-r:#CF142B;
+    --radius:14px; --shadow:0 1px 2px rgba(16,32,44,.04),0 6px 20px rgba(16,32,44,.06);
+    --maxw:1080px;
+  }
+  html{scroll-behavior:smooth;font-size:17px}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:1rem}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px}
+  .flag-stripe{height:5px;background:linear-gradient(90deg,var(--ve-y) 0 33.3%,var(--ve-b) 33.3% 66.6%,var(--ve-r) 66.6% 100%)}
+
+  /* Emergency bar */
+  .emer{background:var(--emer);color:#fff;font-size:.92rem}
+  .emer .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;padding:9px 14px}
+  .emer .lbl{display:inline-flex;align-items:center;gap:7px;font-weight:800;letter-spacing:.02em}
+  .emer .callbtn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.5);color:#fff;font-weight:800;padding:10px 15px;border-radius:99px;
+    min-height:46px;white-space:nowrap}
+  .emer .callbtn:hover{background:rgba(255,255,255,.3);text-decoration:none}
+  .emer .seeall{color:#fff;font-weight:700;text-decoration:underline;white-space:nowrap;padding:6px 2px}
+
+  /* Header / hero */
+  header.hero{background:radial-gradient(1200px 400px at 70% -10%,#1b3a6b 0,#16202c 55%);color:#fff;padding:34px 0 40px}
+  .brand-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.01em;font-size:1.05rem}
+  .brand .dot{width:26px;height:26px;border-radius:7px;background:linear-gradient(160deg,var(--ve-y),var(--ve-r));flex:0 0 auto;
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.18)}
+
+  /* Language toggle */
+  .lang{display:inline-flex;align-items:center;gap:0;flex:0 0 auto;background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.28);border-radius:99px;padding:3px;overflow:hidden}
+  .lang button{font-family:inherit;font-weight:700;font-size:.85rem;letter-spacing:.03em;color:#cdd8e8;
+    background:transparent;border:0;cursor:pointer;padding:8px 16px;border-radius:99px;line-height:1.2;min-height:38px;transition:background .15s,color .15s}
+  .lang button:hover{color:#fff}
+  .lang button[aria-pressed="true"]{background:#fff;color:var(--ink)}
+
+  .hero h1{font-size:clamp(1.7rem,4.6vw,2.7rem);line-height:1.12;letter-spacing:-.02em;margin:18px 0 10px;max-width:18ch}
+  .hero p.sub{color:#cdd8e8;font-size:clamp(1rem,2.4vw,1.18rem);max-width:54ch;margin-bottom:8px}
+  .updated{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:#9fb2cd;margin-top:6px}
+  .updated .pulse{width:9px;height:9px;border-radius:50%;background:#5ee08a;box-shadow:0 0 0 0 rgba(94,224,138,.6);animation:p 2s infinite}
+  @keyframes p{0%{box-shadow:0 0 0 0 rgba(94,224,138,.5)}70%{box-shadow:0 0 0 8px rgba(94,224,138,0)}100%{box-shadow:0 0 0 0 rgba(94,224,138,0)}}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:1.06rem;padding:16px 22px;border-radius:12px;border:0;cursor:pointer;min-height:58px}
+  .btn.primary{background:#fff;color:var(--ink)}
+  .btn.primary:hover{background:#eef2f8;text-decoration:none}
+  .btn.ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.28)}
+  .btn.ghost:hover{background:rgba(255,255,255,.16);text-decoration:none}
+  .btn.don{background:var(--ve-y);color:#3a2e00}
+  .btn.don:hover{filter:brightness(1.05);text-decoration:none}
+  .btn.sos{background:#e23b3b;color:#fff}
+  .btn.sos:hover{filter:brightness(1.06);text-decoration:none}
+
+  /* Operational alert */
+  .alert{background:var(--warn-bg);border:1px solid var(--warn-line);border-left:5px solid #ea8a1e;border-radius:12px;
+    padding:14px 16px;margin:20px auto;color:var(--warn-ink);display:flex;gap:12px;align-items:flex-start}
+  .alert svg{flex:0 0 auto;margin-top:2px}
+  .alert b{color:#7c2d12}
+
+  /* Sticky nav */
+  nav.toc{position:sticky;top:0;z-index:40;background:rgba(246,248,251,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.toc .wrap{display:flex;gap:8px;overflow-x:auto;padding:11px 18px;scrollbar-width:none}
+  nav.toc .wrap::-webkit-scrollbar{display:none}
+  nav.toc a{flex:0 0 auto;display:inline-flex;align-items:center;font-size:.9rem;font-weight:600;color:#374050;background:#fff;border:1px solid var(--line);
+    padding:9px 15px;border-radius:99px;min-height:42px}
+  nav.toc a:hover{color:var(--ink);border-color:#cfd6e0;text-decoration:none}
+
+  /* Search */
+  .search{margin:22px auto 6px;position:relative}
+  .search input{width:100%;font-size:1rem;padding:14px 16px 14px 46px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+  .search input:focus{outline:2px solid var(--accent);border-color:var(--accent)}
+  .search svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted)}
+
+  /* Sections */
+  section{padding:30px 0 6px;scroll-margin-top:64px}
+  .sec-head{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+  .sec-head .ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex:0 0 auto;color:#fff}
+  .sec-head h2{font-size:clamp(1.25rem,3vw,1.6rem);letter-spacing:-.01em}
+  .sec-desc{color:var(--muted);margin:2px 0 18px;max-width:62ch}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 16px 15px;box-shadow:var(--shadow);
+    display:flex;flex-direction:column;gap:7px}
+  .card h3{font-size:1.08rem;letter-spacing:-.01em;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .card p{font-size:.96rem;color:var(--muted);flex:1}
+  .card .go{font-weight:700;font-size:.95rem;display:inline-flex;align-items:center;gap:6px;margin-top:6px}
+  .card a.go{justify-content:center;min-height:50px;padding:13px 16px;border-radius:11px;background:#eef4ff;border:1px solid #d6e3fb;color:var(--accent-d)}
+  .card a.go:hover{background:#e2edff;text-decoration:none}
+  .card span.go{color:var(--muted);justify-content:flex-start}
+  .card a.go svg{transition:transform .15s}
+  .card a.go:hover svg{transform:translateX(3px)}
+  #donar .card a.go,#remesas .card a.go{background:var(--ok-bg);border-color:#bfe3cd;color:#0f6a3a}
+  #donar .card a.go:hover,#remesas .card a.go:hover{background:#dcf2e6}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+  .tag{font-size:.7rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:#eef2f8;color:#48566a}
+  .tag.ok{background:var(--ok-bg);color:var(--ok)}
+  .tag.ve{background:#fdf6d8;color:#7a5c00}
+  .tag.glob{background:#e8f0fe;color:#1a4fb4}
+  .tel{font-weight:800;color:var(--ink);font-size:1.05rem;letter-spacing:.01em}
+
+  /* Big number cards (emergency) — callable */
+  .nums{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+  .num{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 16px;box-shadow:var(--shadow);color:inherit}
+  a.num:hover{text-decoration:none;border-color:#f1b7b7;box-shadow:0 6px 20px rgba(209,43,43,.14)}
+  .num .n{font-size:1.65rem;font-weight:800;letter-spacing:.01em;color:var(--emer)}
+  .num .d{font-size:.86rem;color:var(--muted);font-weight:600}
+  .num .call{margin-top:8px;font-size:.78rem;font-weight:800;color:var(--emer);display:inline-flex;align-items:center;gap:5px}
+
+  /* checklist */
+  .checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:6px}
+  .chk{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 14px;display:flex;gap:11px;align-items:flex-start;box-shadow:var(--shadow)}
+  .chk .b{flex:0 0 auto;width:24px;height:24px;border-radius:7px;background:var(--ok-bg);color:var(--ok);display:grid;place-items:center;font-weight:800;font-size:.8rem}
+  .chk.warn .b{background:#fdeaea;color:var(--emer)}
+  .chk p{font-size:.9rem}.chk b{color:var(--ink)}
+
+  .note{font-size:.82rem;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:10px;padding:11px 13px;margin-top:14px}
+  .note.amber{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+
+  /* Region group */
+  .region{margin-top:16px}
+  .region h4{font-size:.92rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:9px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  .region ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:6px 18px}
+  .region li{font-size:.88rem;padding:5px 0;border-bottom:1px solid #f0f2f6}
+  .region li b{color:var(--ink)}
+  .region li span{color:var(--muted)}
+
+  footer{margin-top:40px;background:#16202c;color:#aebacb;padding:30px 0 36px;font-size:.85rem}
+  footer .wrap{display:flex;flex-direction:column;gap:14px}
+  footer h4{color:#fff;font-size:1rem;margin-bottom:4px}
+  footer .disc{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:13px 15px;line-height:1.6}
+  footer a{color:#9fc2ff}
+  .share{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#073;font-weight:800;padding:12px 18px;border-radius:11px;align-self:flex-start;min-height:44px}
+  .share:hover{filter:brightness(1.04);text-decoration:none}
+
+  /* People finder · multibúsqueda */
+  .finder{background:radial-gradient(900px 300px at 90% -40%,#1d3d6e 0,#0e2747 60%);color:#fff;border-radius:16px;padding:22px;margin-bottom:18px;box-shadow:var(--shadow)}
+  .finder h3{font-size:clamp(1.12rem,2.7vw,1.4rem);letter-spacing:-.01em;display:flex;align-items:center;gap:9px}
+  .finder h3 .star{flex:0 0 auto}
+  .finder p.fd{color:#c5d4ea;font-size:.92rem;margin:7px 0 15px;max-width:62ch}
+  .finder form{display:flex;gap:10px;flex-wrap:wrap}
+  .finder input{flex:1 1 240px;min-width:0;font-size:1rem;padding:14px 16px;border-radius:11px;border:1px solid rgba(255,255,255,.25);background:#fff;color:var(--ink);min-height:50px}
+  .finder input:focus{outline:2px solid var(--ve-y);border-color:var(--ve-y)}
+  .finder .fbtn{flex:0 0 auto;font-family:inherit;font-weight:800;font-size:1rem;padding:14px 22px;border-radius:11px;border:0;background:var(--ve-y);color:#3a2e00;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px}
+  .finder .fbtn:hover{filter:brightness(1.06)}
+  .finder-actions{margin-top:15px;display:flex;flex-wrap:wrap;gap:9px}
+  .finder-actions a{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.26);color:#fff;font-weight:600;font-size:.88rem;padding:11px 14px;border-radius:10px;min-height:44px}
+  .finder-actions a:hover{background:rgba(255,255,255,.2);text-decoration:none}
+  .finder-actions a .pf{font-size:.68rem;letter-spacing:.04em;text-transform:uppercase;opacity:.72;font-weight:800}
+  .finder-actions a.hi{background:var(--ve-y);color:#3a2e00;border-color:var(--ve-y);font-weight:800}
+  .finder-actions a.hi:hover{filter:brightness(1.06);background:var(--ve-y)}
+  .finder-hint{margin-top:12px;font-size:.83rem;color:#a9c0e0;display:flex;align-items:flex-start;gap:7px;line-height:1.5}
+  .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);background:#0e2747;color:#fff;border:1px solid rgba(255,255,255,.22);padding:13px 18px;border-radius:12px;box-shadow:0 10px 34px rgba(0,0,0,.34);font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:100;max-width:90vw;text-align:center;line-height:1.45}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* Sala situacional · dashboard */
+  .sala-meta{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .sala-updated{font-size:.84rem;color:var(--muted);display:inline-flex;align-items:center;gap:7px}
+  .sala-updated .dotlive{width:9px;height:9px;border-radius:50%;background:#5ee08a;box-shadow:0 0 0 0 rgba(94,224,138,.6);animation:p 2s infinite}
+  .sala-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 16px;box-shadow:var(--shadow);border-top:3px solid var(--line)}
+  .kpi .v{font-size:1.85rem;font-weight:800;letter-spacing:-.02em;line-height:1.05}
+  .kpi .l{font-size:.86rem;color:#2c3645;font-weight:700;margin-top:4px}
+  .kpi .src{font-size:.68rem;color:#868f9c;margin-top:5px}
+  .kpi.dead{border-top-color:var(--emer)} .kpi.dead .v{color:var(--emer)}
+  .kpi.ok{border-top-color:var(--ok)} .kpi.ok .v{color:var(--ok)}
+  .kpi.warn{border-top-color:#c47715} .kpi.warn .v{color:#b4671e}
+  .kpi.info{border-top-color:var(--accent)} .kpi.info .v{color:var(--accent-d)}
+  .sala-skel .kpi{height:104px;background:linear-gradient(100deg,#eef1f5 30%,#f6f8fb 50%,#eef1f5 70%);background-size:200% 100%;animation:sh 1.3s infinite;border-top-color:var(--line)}
+  @keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  .sala-err{background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink);border-radius:12px;padding:14px 16px;font-size:.9rem}
+  .quakes{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:4px 16px 8px;box-shadow:var(--shadow)}
+  .quakes h4{font-size:.82rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:11px 0 7px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px}
+  .quake{display:flex;align-items:center;gap:11px;padding:9px 0;border-bottom:1px solid #f0f2f6;font-size:.9rem}
+  .quake:last-child{border-bottom:0}
+  .quake .mg{font-weight:800;color:var(--emer);min-width:46px;font-size:1rem}
+  .quake .pl{flex:1;color:var(--ink)}
+  .quake .tm{color:var(--muted);font-size:.8rem;white-space:nowrap}
+  .share-row{display:flex;flex-wrap:wrap;gap:10px}
+  .share-row button{font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:.92rem;
+    padding:11px 16px;border-radius:11px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;min-height:46px}
+  .share-row button:hover{border-color:#cfd6e0;background:#fbfcfe}
+  .share-row button.wa{background:#25D366;color:#063d20;border-color:#25D366}
+  .share-row button.wa:hover{filter:brightness(1.04)}
+
+  /* ===== Responsive ===== */
+  @media(max-width:760px){
+    .region ul{grid-template-columns:1fr}
+  }
+  @media(max-width:600px){
+    .wrap{padding:0 14px}
+    .hero{padding:22px 0 28px}
+    .brand{font-size:.98rem}
+    .hero h1{margin:14px 0 9px}
+    .cta{gap:9px}
+    .btn{flex:1 1 100%;justify-content:center;min-height:48px}
+    .emer .wrap{gap:4px 13px;padding:8px 14px;font-size:.82rem}
+    .sec-head .ic{width:34px;height:34px}
+    section{padding:26px 0 6px}
+    .grid{grid-template-columns:1fr;gap:12px}
+    .checks{grid-template-columns:1fr}
+    .nums{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+    .finder{padding:17px}
+    .finder form{flex-direction:column}
+    .finder .fbtn{width:100%}
+    .share{align-self:stretch;justify-content:center}
+    nav.toc .wrap{padding:10px 14px}
+  }
+  @media(max-width:380px){
+    html{font-size:16px}
+    .hero h1{font-size:1.5rem}
+    .nums{grid-template-columns:1fr 1fr}
+    .num .n{font-size:1.4rem}
+  }
+  @media(hover:none){
+    .card a.go:hover svg{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="flag-stripe"></div>
+
+<!-- EMERGENCIA -->
+<div class="emer">
+  <div class="wrap">
+    <span class="lbl">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+      <span data-en="EMERGENCY">EMERGENCIA</span>
+    </span>
+    <a class="callbtn" href="tel:911"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.3.2 2.5.57 3.6a1 1 0 0 1-.25 1Z"/></svg> 911</a>
+    <a class="callbtn" href="tel:08007372282"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.3.2 2.5.57 3.6a1 1 0 0 1-.25 1Z"/></svg> 0800-RESCATE</a>
+    <a class="seeall" href="#emergencia" data-en="all lines →">todas las líneas →</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="brand-row">
+      <div class="brand"><span class="dot"></span> Ayuda Venezuela · Terremoto 2026</div>
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" id="langEs" aria-pressed="true">ES</button>
+        <button type="button" id="langEn" aria-pressed="false">EN</button>
+      </div>
+    </div>
+    <h1 data-en="All the earthquake relief, in one place.">Toda la ayuda del terremoto, en un solo lugar.</h1>
+    <p class="sub" data-en="Look for a loved one, ask for help, or contribute. We gathered the verified pages and hotlines after the June 24 earthquake. Take your time — it's all right here, step by step.">¿Buscas a un familiar o necesitas ayuda? Aquí reunimos las páginas y líneas verificadas tras el terremoto del 24 de junio. Con calma: todo está aquí abajo, paso a paso.</p>
+    <div class="updated"><span class="pulse"></span> <span data-en="Updated: Jun 28, 2026 · Citizen initiative — not an official channel">Actualizado: 28 jun 2026 · Iniciativa ciudadana — no es un canal oficial</span></div>
+    <div class="cta">
+      <a class="btn primary" href="#buscar" data-en="🔎 Find a loved one">🔎 Buscar a un familiar</a>
+      <a class="btn sos" href="#emergencia" data-en="🆘 Emergency & rescue">🆘 Emergencia y rescate</a>
+      <a class="btn don" href="#donar" data-en="💛 I want to help">💛 Quiero ayudar</a>
+    </div>
+  </div>
+</header>
+
+<!-- ALERTA OPERATIVA -->
+<div class="wrap">
+  <div class="alert">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ea8a1e" stroke-width="2.2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+    <div data-en="&lt;b&gt;Access to La Guaira is restricted.&lt;/b&gt; Since Friday at 8:00 p.m., only people with an assigned task may enter. Volunteers (including motorcyclists): &lt;b&gt;register first at the Poliedro de Caracas&lt;/b&gt; to get credentials before heading down. Don't go on your own — congestion blocks ambulances and rescue teams. &lt;b&gt;Aftershocks continue:&lt;/b&gt; stay alert.">
+      <b>Acceso a La Guaira restringido.</b> Desde el viernes 8:00 p.m. solo entran personas con tarea asignada. Voluntarios (incluidos motorizados): <b>regístrate primero en el Poliedro de Caracas</b> para obtener credencial antes de bajar. No vayas por tu cuenta — el congestionamiento bloquea ambulancias y rescatistas. <b>Siguen las réplicas:</b> mantente alerta.
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="toc">
+  <div class="wrap">
+    <a href="#sala" data-en="Overview">Situación</a>
+    <a href="#buscar" data-en="Find a person">Buscar persona</a>
+    <a href="#donar" data-en="Donate">Donar</a>
+    <a href="#estafa" data-en="Donate safely">Donar seguro</a>
+    <a href="#directorios" data-en="Directories">Directorios</a>
+    <a href="#acopio" data-en="Drop-off centers">Centros de acopio</a>
+    <a href="#hospitales" data-en="Hospitals">Hospitales</a>
+    <a href="#voluntarios" data-en="Volunteers">Voluntarios</a>
+    <a href="#remesas" data-en="Remittances">Remesas</a>
+    <a href="#emergencia" data-en="Emergency">Emergencia</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- SALA SITUACIONAL -->
+  <section id="sala" data-sec>
+    <div class="sec-head"><div class="ic" style="background:#3b4b66"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7"/><rect x="13" y="6" width="3" height="11"/></svg></div><h2 data-en="Situation room">Sala situacional</h2></div>
+    <p class="sec-desc" data-en="Live figures compiled from the citizen platforms. Numbers from different platforms may overlap; only those marked &lt;b&gt;official&lt;/b&gt; are a preliminary official count.">Cifras en vivo compiladas de las plataformas ciudadanas. Las de distintas plataformas pueden solaparse; solo las marcadas como <b>oficial</b> son un conteo oficial preliminar.</p>
+    <div class="sala-meta">
+      <span class="sala-updated" id="salaUpdated"><span class="dotlive"></span> <span data-en="Loading live data…">Cargando datos en vivo…</span></span>
+      <div class="share-row">
+        <button id="shareStats" class="wa" type="button"><svg width="17" height="17" viewBox="0 0 24 24" fill="#063d20"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.1.3.7 1.1 1.4 1.8 1 .8 1.7 1.1 2 1.2.2.1.4.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.2.1.4.2.5.3.1.2.1.6-.1 1.1Z"/></svg> <span data-en="Share summary">Compartir resumen</span></button>
+        <button id="statusImg" type="button"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg> <span data-en="Image for Status">Imagen para Estado</span></button>
+      </div>
+    </div>
+    <div class="sala-grid sala-skel" id="salaGrid" aria-live="polite">
+      <div class="kpi"></div><div class="kpi"></div><div class="kpi"></div><div class="kpi"></div>
+      <div class="kpi"></div><div class="kpi"></div><div class="kpi"></div><div class="kpi"></div>
+    </div>
+    <div class="quakes" id="quakesBox" hidden><h4><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h3l2 5 4-14 3 9 2-4 2 4h4"/></svg> <span data-en="Recent aftershocks (USGS)">Réplicas recientes (USGS)</span></h4><div id="quakesList"></div></div>
+  </section>
+
+  <!-- BUSCAR PERSONA -->
+  <section id="buscar" data-sec>
+    <div class="sec-head"><div class="ic" style="background:#0a5bd6"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div><h2 data-en="Find a person">Buscar a una persona</h2></div>
+    <p class="sec-desc" data-en="Citizen platforms to search for and register missing people, people who are safe, and hospital admissions. They are a huge help, but they &lt;b&gt;do not replace&lt;/b&gt; Civil Protection or the Red Cross.">Plataformas ciudadanas para buscar y registrar desaparecidos, personas a salvo e ingresos hospitalarios. Son de gran ayuda, pero <b>no reemplazan</b> a Protección Civil ni a la Cruz Roja.</p>
+
+    <!-- MULTIBÚSQUEDA -->
+    <div class="finder">
+      <h3><span class="star">⚡</span> <span data-en="Search one name across every platform at once">Busca un nombre en todas las plataformas a la vez</span></h3>
+      <p class="fd" data-en="Type the full name or ID number and we take you to the platforms with the search ready. We also copy the term so you can paste it instantly where needed.">Escribe el nombre completo o la cédula y te llevamos a las plataformas con la búsqueda lista. Además copiamos el dato para que lo pegues al instante donde haga falta.</p>
+      <form id="finderForm" autocomplete="off">
+        <input id="pq" type="search" placeholder="Nombre y apellido o cédula…" data-en-placeholder="Full name or ID number…" aria-label="Nombre o cédula a buscar">
+        <button type="submit" class="fbtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a2e00" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <span data-en="Search all">Buscar en todas</span>
+        </button>
+      </form>
+      <div class="finder-actions" id="finderActions" hidden></div>
+      <div class="finder-hint" id="finderHint" hidden></div>
+    </div>
+
+    <div class="grid">
+      <div class="card" data-item>
+        <h3>Red Ayuda Venezuela <span class="tag ok" data-en="verified">verificada</span></h3>
+        <p data-en="The most complete: missing, trapped, injured, hospitalized, people who are safe, children, refugees and needs. Search by name or photo.">La más completa: desaparecidos, atrapados, heridos, en hospitales, personas a salvo, niños, refugiados y necesidades. Búsqueda por nombre o foto.</p>
+        <a class="go" href="https://redayudavenezuela.com/" target="_blank" rel="noopener"><span data-en="Open redayudavenezuela.com">Abrir redayudavenezuela.com</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Venezuela Te Busca <span class="tag ok" data-en="verified">verificada</span></h3>
+        <p data-en="Massive citizen registry (tens of thousands of records). Search by name, ID or location; register someone or mark them as located.">Registro ciudadano masivo (decenas de miles de fichas). Busca por nombre, cédula o ubicación; registra a alguien o márcalo como localizado.</p>
+        <a class="go" href="https://venezuelatebusca.com" target="_blank" rel="noopener"><span data-en="Open venezuelatebusca.com">Abrir venezuelatebusca.com</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Desaparecidos Terremoto VE <span class="tag ok" data-en="verified">verificada</span></h3>
+        <p data-en="Report a missing person, identify someone seen at a hospital or shelter, and mark them as found. &quot;Let's reconnect every family.&quot;">Reportar un desaparecido, identificar a alguien visto en hospital o refugio, y marcar como encontrado. "Reconectemos a cada familia".</p>
+        <a class="go" href="https://desaparecidosterremotovenezuela.com/" target="_blank" rel="noopener"><span data-en="Open the site">Abrir el sitio</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Hospitales en Venezuela <span class="tag ok" data-en="verified">verificada</span></h3>
+        <p data-en="Find an admitted relative by name or ID. It only confirms whether the person is registered and at which facility, without revealing medical data.">Encuentra a un familiar ingresado por nombre o cédula. Confirma solo si la persona está registrada y en qué centro, sin revelar datos médicos.</p>
+        <a class="go" href="https://hospitalesenvenezuela.com/" target="_blank" rel="noopener"><span data-en="Open hospitalesenvenezuela.com">Abrir hospitalesenvenezuela.com</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Cruz Roja — Contacto Familiar <span class="tag glob" data-en="official">oficial</span></h3>
+        <p data-en="Restoring Family Links (ICRC). Official channel to reconnect separated families. Direct line to the Venezuelan Red Cross.">Restablecimiento del Contacto entre Familiares (ICRC). Canal oficial para reconectar familias separadas. Tel. directo Cruz Roja Venezolana.</p>
+        <a class="tel" href="tel:+584122665945" style="text-decoration:none">📞 +58 412 266 5945</a>
+        <a class="go" href="https://familylinks.icrc.org/organization/venezuelan-red-cross" target="_blank" rel="noopener"><span data-en="Open Family Links">Abrir Family Links</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>VenApp <span class="tag" data-en="official app">app oficial</span></h3>
+        <p data-en="State app adapted to report trapped or missing people, call for help and report structural damage. Download it from your app store.">Aplicación del Estado adaptada para reportar personas atrapadas o desaparecidas, pedir auxilio y notificar daños estructurales. Descárgala en tu tienda de apps.</p>
+        <span class="go" style="color:var(--muted)" data-en="Mobile app — Android / iOS">App móvil — Android / iOS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONAR -->
+  <section id="donar" data-sec>
+    <div class="sec-head"><div class="ic" style="background:#137a43"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M19 14c1.5-1.5 3-3.3 3-5.5A3.5 3.5 0 0 0 15.5 6L12 9.5 8.5 6A3.5 3.5 0 0 0 2 8.5C2 10.7 3.5 12.5 5 14l7 7Z"/></svg></div><h2 data-en="Donate money (verified)">Donar dinero (verificado)</h2></div>
+    <p class="sec-desc" data-en="Real organizations already operating on the ground. Before donating, read &lt;a href=&quot;#estafa&quot;&gt;How to donate safely&lt;/a&gt;. Tags: &lt;span class=&quot;tag ve&quot;&gt;🇻🇪 VE quake&lt;/span&gt; specific to this earthquake · &lt;span class=&quot;tag glob&quot;&gt;global&lt;/span&gt; international organization.">Organizaciones reales que ya están operando en terreno. Antes de donar, lee <a href="#estafa">Cómo donar seguro</a>. Etiquetas: <span class="tag ve">🇻🇪 sismo VE</span> específica de este terremoto · <span class="tag glob">global</span> organización internacional.</p>
+    <div class="grid">
+      <div class="card" data-item>
+        <h3>GoFundMe · I Love Venezuela <span class="tag ve" data-en="🇻🇪 VE quake">🇻🇪 sismo VE</span></h3>
+        <p data-en="Active campaign for affected families and communities, alongside Global Empowerment Mission. Bilingual ES/EN, by card.">Campaña activa para familias y comunidades afectadas, junto a Global Empowerment Mission. Bilingüe ES/EN, con tarjeta.</p>
+        <a class="go" href="https://www.gofundme.com/f/emergency-relief-for-venezuela-earthquake-victims" target="_blank" rel="noopener"><span data-en="Donate">Donar</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>World Central Kitchen <span class="tag ve" data-en="🇻🇪 VE quake">🇻🇪 sismo VE</span></h3>
+        <p data-en="Hot meals and water for evacuees and first responders. Kitchens on the ground. ES/EN.">Comida caliente y agua a evacuados y primeros respondedores. Cocinas en terreno. ES/EN.</p>
+        <a class="go" href="https://donate.wck.org/campaign/815521/donate" target="_blank" rel="noopener"><span data-en="Donate">Donar</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Cruz Roja / IFRC <span class="tag ve" data-en="🇻🇪 VE quake">🇻🇪 sismo VE</span></h3>
+        <p data-en="Supports the Venezuelan Red Cross: shelter, health, field hospitals, water and cash assistance. Multilingual.">Apoya a la Cruz Roja Venezolana: refugio, salud, hospitales de campaña, agua y ayuda en efectivo. Multiidioma.</p>
+        <a class="go" href="https://donate.redcrossredcrescent.org/ifrc/venezuela-earthquake/" target="_blank" rel="noopener"><span data-en="Donate">Donar</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Médicos Sin Fronteras <span class="tag ve" data-en="🇻🇪 VE quake">🇻🇪 sismo VE</span></h3>
+        <p data-en="Trauma kits for hospitals in La Guaira and Caracas, medical care and psychological support.">Kits de trauma a hospitales de La Guaira y Caracas, atención médica y apoyo psicológico.</p>
+        <a class="go" href="https://www.doctorswithoutborders.ca/venezuela-earthquakes/" target="_blank" rel="noopener"><span data-en="Donate">Donar</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Direct Relief <span class="tag ve" data-en="🇻🇪 VE quake">🇻🇪 sismo VE</span></h3>
+        <p data-en="Emergency medicines and surgical kits for the injured. &lt;b&gt;100% of your donation goes to the earthquake.&lt;/b&gt;">Medicinas de emergencia y kits quirúrgicos para los heridos. <b>100% de tu donación va al sismo.</b></p>
+        <a class="go" href="https://www.directrelief.org/emergency/venezuela-earthquakes-2026/" target="_blank" rel="noopener"><span data-en="Donate">Donar</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Save the Children <span class="tag ve" data-en="🇻🇪 VE quake">🇻🇪 sismo VE</span></h3>
+        <p data-en="Emergency fund for children: health, food, hygiene, family reunification and psychosocial support.">Fondo de emergencia para la niñez: salud, alimentos, higiene, reunificación familiar y apoyo psicosocial.</p>
+        <a class="go" href="https://www.savethechildren.net/emergency/venezuela-earthquake" target="_blank" rel="noopener"><span data-en="Donate">Donar</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Global Empowerment Mission <span class="tag ve" data-en="🇻🇪 VE quake">🇻🇪 sismo VE</span></h3>
+        <p data-en="$10M committed: food, water, hygiene, shelter, hospital and reconstruction. Runs the Doral/Miami drop-off center.">$10M comprometidos: comida, agua, higiene, refugio, hospital y reconstrucción. Opera el acopio de Doral/Miami.</p>
+        <a class="go" href="https://www.globalempowermentmission.org/mission/venezuela-earthquakes/" target="_blank" rel="noopener"><span data-en="Donate">Donar</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>International Rescue Committee <span class="tag ve" data-en="🇻🇪 VE quake">🇻🇪 sismo VE</span></h3>
+        <p data-en="Health, nutrition, water and sanitation, protection. Donations with a matching multiplier.">Salud, nutrición, agua y saneamiento, protección. Donaciones con multiplicador de aporte.</p>
+        <a class="go" href="https://www.rescue.org/article/how-help-survivors-earthquakes-venezuela" target="_blank" rel="noopener"><span data-en="Donate">Donar</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Samaritan's Purse <span class="tag ve" data-en="🇻🇪 VE quake">🇻🇪 sismo VE</span></h3>
+        <p data-en="Field hospital, emergency medical care and clean water. ES/EN.">Hospital de campaña, atención médica de emergencia y agua limpia. ES/EN.</p>
+        <a class="go" href="https://www.samaritanspurse.org/donation-items/venezuela-relief/" target="_blank" rel="noopener"><span data-en="Donate">Donar</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Team Rubicon <span class="tag ve" data-en="🇻🇪 VE quake">🇻🇪 sismo VE</span></h3>
+        <p data-en="Advance medical teams and disaster response operations run by veterans and volunteers.">Equipos médicos de avanzada y operaciones de respuesta a desastres con veteranos y voluntarios.</p>
+        <a class="go" href="https://support.teamrubiconusa.org/supportmgmt/donation/Venezuela2026" target="_blank" rel="noopener"><span data-en="Donate">Donar</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>WFP · Programa Mundial de Alimentos <span class="tag ve" data-en="🇻🇪 VE quake">🇻🇪 sismo VE</span></h3>
+        <p data-en="UN food assistance and humanitarian logistics for affected families.">Asistencia alimentaria y logística humanitaria de la ONU para las familias afectadas.</p>
+        <a class="go" href="https://www.wfpusa.org/news/wfp-usa-statement-venezuelan-earthquakes/" target="_blank" rel="noopener"><span data-en="Donate">Donar</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>GlobalGiving <span class="tag ve" data-en="🇻🇪 VE quake">🇻🇪 sismo VE</span></h3>
+        <p data-en="Response fund that channels donations to local organizations: medical aid, shelter, food and water.">Fondo de respuesta que canaliza donaciones a organizaciones locales: ayuda médica, refugio, comida y agua.</p>
+        <a class="go" href="https://www.globalgiving.org/projects/venezuela-earthquake-relief-fund/" target="_blank" rel="noopener"><span data-en="Donate">Donar</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Catholic Relief Services <span class="tag ve" data-en="🇻🇪 VE quake">🇻🇪 sismo VE</span></h3>
+        <p data-en="Works with Caritas Venezuela: shelter, food, water and medical care in the affected areas.">Trabaja con Caritas Venezuela: refugio, comida, agua y atención médica en las zonas afectadas.</p>
+        <a class="go" href="https://www.crs.org/donate/venezuela-earthquake" target="_blank" rel="noopener"><span data-en="Donate">Donar</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Convoy of Hope <span class="tag ve" data-en="🇻🇪 VE quake">🇻🇪 sismo VE</span></h3>
+        <p data-en="Hygiene kits, hot meals and water with mobile kitchens at the disaster site.">Kits de higiene, comidas calientes y agua con cocinas móviles en el lugar del desastre.</p>
+        <a class="go" href="https://convoyofhope.org/donate/disaster-relief/venezuela-earthquakes-2026/" target="_blank" rel="noopener"><span data-en="Donate">Donar</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+    <div class="note" data-en="If you donate from &lt;b&gt;Spain&lt;/b&gt;: Spanish Red Cross via Bizum to &lt;b&gt;33512&lt;/b&gt; (note &quot;Venezuela&quot;) · World Central Kitchen via Bizum to &lt;b&gt;03843&lt;/b&gt;.">Si donás desde <b>España</b>: Cruz Roja Española por Bizum al <b>33512</b> (concepto "Venezuela") · World Central Kitchen por Bizum al <b>03843</b>.</div>
+  </section>
+
+  <!-- ANTI ESTAFA -->
+  <section id="estafa" data-sec>
+    <div class="sec-head"><div class="ic" style="background:#d12b2b"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></div><h2 data-en="How to donate safely and avoid scams">Cómo donar seguro y evitar estafas</h2></div>
+    <p class="sec-desc" data-en="After the earthquake, networks emerged that prey on people's generosity. Real help means donating with a cool head. Before transferring a single bolívar, dollar or crypto, check this.">Tras el terremoto aparecieron redes que se aprovechan de la solidaridad. Ayudar de verdad es donar con cabeza fría. Antes de transferir un solo bolívar, dólar o cripto, revisa esto.</p>
+    <div class="checks">
+      <div class="chk"><span class="b">✓</span><p data-en="&lt;b&gt;Only donate to organizations that already existed&lt;/b&gt; before the earthquake. Be wary of &quot;NGOs&quot; born overnight.">&lt;b&gt;Dona solo a organizaciones que ya existían&lt;/b&gt; antes del terremoto. Desconfía de "ONGs" nacidas de un día para otro.</p></div>
+      <div class="chk"><span class="b">✓</span><p data-en="&lt;b&gt;Transfer to corporate accounts, never personal ones.&lt;/b&gt; If they ask for a Pago Móvil to the personal account of &quot;someone who knows the family,&quot; that's a red flag.">&lt;b&gt;Transfiere a cuentas jurídicas, nunca personales.&lt;/b&gt; Si te piden Pago Móvil a la cuenta personal de "alguien que conoce a la familia", es alerta.</p></div>
+      <div class="chk"><span class="b">✓</span><p data-en="&lt;b&gt;Go to the official site yourself.&lt;/b&gt; Type the address by hand or use your bank's app. Don't tap links sent to you via WhatsApp/SMS, especially shortened ones.">&lt;b&gt;Entra tú al sitio oficial.&lt;/b&gt; Escribe la dirección a mano o usa la app de tu banco. No toques links que te llegan por WhatsApp/SMS, menos si son acortados.</p></div>
+      <div class="chk"><span class="b">✓</span><p data-en="&lt;b&gt;Confirm with a 2nd source.&lt;/b&gt; Cross-check the name against news and official channels. If it's real, there's a trace beyond the message you got.">&lt;b&gt;Confirma con una 2ª fuente.&lt;/b&gt; Cruza el nombre con noticias y redes oficiales. Si es real, hay rastro fuera del mensaje que te llegó.</p></div>
+      <div class="chk"><span class="b">✓</span><p data-en="&lt;b&gt;Pay with a credit card or a recognized platform.&lt;/b&gt; They leave a trace and allow disputes. Avoid methods with no chargeback.">&lt;b&gt;Paga con tarjeta de crédito o plataforma reconocida.&lt;/b&gt; Dejan rastro y permiten reclamo. Evitá métodos sin reverso.</p></div>
+      <div class="chk"><span class="b">✓</span><p data-en="&lt;b&gt;Extreme caution with unverified crypto.&lt;/b&gt; Only to wallets published on the official site. Never to one someone sends you in a chat &quot;because it's faster.&quot;">&lt;b&gt;Cuidado extremo con cripto sin verificar.&lt;/b&gt; Solo a wallets publicadas en el sitio oficial. Nunca a una que te pasan por chat "porque es más rápido".</p></div>
+      <div class="chk warn"><span class="b">!</span><p data-en="&lt;b&gt;No one legitimate rushes you.&lt;/b&gt; Pressure (&quot;donate NOW or they die&quot;) is the scammer's tool. Take all the minutes you need.">&lt;b&gt;Nadie real te apura.&lt;/b&gt; La presión ("dona YA o se mueren") es la herramienta del estafador. Tómate los minutos que necesites.</p></div>
+      <div class="chk warn"><span class="b">!</span><p data-en="&lt;b&gt;&quot;Your relative is trapped and injured.&quot;&lt;/b&gt; A family scam over WhatsApp targeting Venezuelans abroad. Hang up and verify with a &lt;b&gt;voice call&lt;/b&gt; to the number you already have.">&lt;b&gt;"Tu pariente está atrapado y herido."&lt;/b&gt; Estafa familiar por WhatsApp dirigida a venezolanos en el exterior. Cuelga y verifica con una &lt;b&gt;llamada de voz&lt;/b&gt; al número que ya tenés.</p></div>
+      <div class="chk warn"><span class="b">!</span><p data-en="&lt;b&gt;Never give out OTPs, passwords or personal data.&lt;/b&gt; No bank or NGO asks for them by message, email or call.">&lt;b&gt;Nunca des OTP, claves ni datos.&lt;/b&gt; Ningún banco ni ONG los pide por mensaje, correo o llamada.</p></div>
+      <div class="chk warn"><span class="b">!</span><p data-en="&lt;b&gt;Accounts that keep changing and reused photos.&lt;/b&gt; Material from other disasters (Japan 2011, Turkey) has been detected falsely attributed to this crisis.">&lt;b&gt;Cuentas que cambian y fotos reusadas.&lt;/b&gt; Se detectó material de otras catástrofes (Japón 2011, Turquía) atribuido falsamente a esta crisis.</p></div>
+    </div>
+    <div class="note" data-en="Sources: FTC · FBI · GoFundMe Trust&amp;nbsp;&amp;amp;&amp;nbsp;Safety · Venezuelan Banking Association · CriptoNoticias · Alta Densidad · Infobae. If you spot a scam, report it to your bank, the authorities and the platform where you saw it.">Fuentes: FTC · FBI · GoFundMe Trust&nbsp;&amp;&nbsp;Safety · Asociación Bancaria de Venezuela · CriptoNoticias · Alta Densidad · Infobae. Si detectás una estafa, repórtala a tu banco, a las autoridades y a la plataforma donde la viste.</div>
+  </section>
+
+  <!-- DIRECTORIOS -->
+  <section id="directorios" data-sec>
+    <div class="sec-head"><div class="ic" style="background:#5b3fb4"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></div><h2 data-en="Other citizen directories">Otros directorios ciudadanos</h2></div>
+    <p class="sec-desc" data-en="Sister initiatives that also centralize help. If you can't find something here, try them — together they cover more.">Iniciativas hermanas que también centralizan ayuda. Si no encontrás algo acá, prueba en ellas — entre todas cubren más.</p>
+    <div class="grid">
+      <div class="card" data-item>
+        <h3>Central de Ayuda Venezuela <span class="tag ok" data-en="verified">verificada</span></h3>
+        <p data-en="Emergencies, finding people, lodging and shelters, health, community resources, volunteering and donations.">Emergencias, búsqueda de personas, alojamiento y refugios, salud, recursos comunitarios, voluntariado y donaciones.</p>
+        <a class="go" href="https://centraldeayudavenezuela.com/" target="_blank" rel="noopener"><span data-en="Open the site">Abrir el sitio</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Recursos Venezuela <span class="tag ok" data-en="verified">verificada</span></h3>
+        <p data-en="Verified resources: donations, missing people, drop-off centers, remittances and an anti-scam guide.">Recursos verificados: donaciones, desaparecidos, centros de acopio, remesas y guía anti-estafa.</p>
+        <a class="go" href="https://recursos-venezuela.netlify.app/" target="_blank" rel="noopener"><span data-en="Open the site">Abrir el sitio</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Mapa de hospitales <span class="tag" data-en="unconfirmed">por confirmar</span></h3>
+        <p data-en="Citizen map of hospital status. Check that it's active before relying on it alone.">Mapa ciudadano del estado de los hospitales. Verifica que esté activo antes de guiarte solo por él.</p>
+        <a class="go" href="https://terremotovenezuela.app/" target="_blank" rel="noopener"><span data-en="Open terremotovenezuela.app">Abrir terremotovenezuela.app</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Caracas Ayuda <span class="tag" data-en="unconfirmed">por confirmar</span></h3>
+        <p data-en="Local platform for shelters and help in Caracas. Check that it's active.">Plataforma local de refugios y ayuda en Caracas. Verifica que esté activa.</p>
+        <a class="go" href="https://caracasayuda.com/" target="_blank" rel="noopener"><span data-en="Open caracasayuda.com">Abrir caracasayuda.com</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACOPIO -->
+  <section id="acopio" data-sec>
+    <div class="sec-head"><div class="ic" style="background:#b4671e"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 9 12 3l9 6v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/><path d="M9 21V12h6v9"/></svg></div><h2 data-en="Drop-off centers">Centros de acopio</h2></div>
+    <p class="sec-desc" data-en="Physical points to drop off in-kind donations, in Venezuela and for the diaspora.">Puntos físicos para llevar donaciones en especie, en Venezuela y para la diáspora.</p>
+    <div class="note amber" data-en="&lt;b&gt;⚠️ Confirm before going.&lt;/b&gt; Drop-off points open, move and close within days (several close July 1–3). Call or check the point's social media the same day. In Florida they do &lt;b&gt;not&lt;/b&gt; accept used clothes or footwear."><b>⚠️ Confirma antes de ir.</b> Los puntos abren, se mudan y cierran en días (varios cierran el 1–3 de julio). Llama o revisa las redes del punto el mismo día. En Florida <b>no</b> reciben ropa ni calzado usado.</div>
+
+    <div class="region">
+      <h4>🇻🇪 Venezuela</h4>
+      <ul>
+        <li><b>Caracas</b> <span>— Iglesia La Paz (Montalbán 1) · Iglesia San Bernardino · Terrazas del Club Hípico · 4ª Av. de Altamira (e/ 9ª y 10ª)</span></li>
+        <li><b>Maracay (Aragua)</b> <span>— C.C. La Capilla (p1, local 21) · Paseo de la Libertad, Av. Las Delicias</span></li>
+        <li><b>Valencia (Carabobo)</b> <span>— Edif. Talislandia (mezz.), Av. Monseñor Adams, El Viñedo</span></li>
+        <li><b>Barquisimeto (Lara)</b> <span>— Tatas Food, Carrera 15 (e/ 13A y 13B)</span></li>
+        <li><b>Angostura (Bolívar)</b> <span>— Esquina Banesco, Av. República</span></li>
+      </ul>
+    </div>
+    <div class="region">
+      <h4>🇨🇴 Colombia</h4>
+      <ul>
+        <li><b>Barranquilla</b> <span data-en="— Cra 43 #6-120 (City Hall, 8am–4pm) · Asocentro, Cra 43 c/37">— Cra 43 #6-120 (Alcaldía, 8–16h) · Asocentro, Cra 43 c/37</span></li>
+        <li><b>Bogotá</b> <span>— Fund. Juntos Se Puede: Hotel Matisse (Kr 13 #63-21, l.111) · Kennedy (Cl 10 #80-41) · Cedritos (Kr 17 #141-05) · Usaquén (Kr 8 #127-76, l.1)</span></li>
+      </ul>
+    </div>
+    <div class="region">
+      <h4>🇦🇷 Argentina · Buenos Aires</h4>
+      <ul>
+        <li><b>Casa Venezuela Arg</b> <span>— Combate de los Pozos 1055</span></li>
+        <li><b data-en="More points">Más puntos</b> <span>— Dulce y Crujiente (Charlone 1514) · Wai Hoy (Estado de Palestina 876) · Fiorella Química (B. Mitre 3816, Sarandí) · Lajoda Club (Niceto Vega 5646)</span></li>
+      </ul>
+    </div>
+    <div class="region">
+      <h4>🇺🇸 Estados Unidos · Florida</h4>
+      <ul>
+        <li><b>GEM Doral</b> <span data-en="— 1850 NW 84th Ave (Mon–Fri 9am–4pm)">— 1850 NW 84th Ave (L–V 9–16h)</span></li>
+        <li><b>Nu Stadium, Miami</b> <span data-en="— main center, Jun 26 to Jul 3">— centro principal, 26 jun al 3 jul</span></li>
+        <li><b>AFE, Miami</b> <span data-en="— 6090 NW 84 Ave (9:30am–3pm)">— 6090 NW 84 Ave (9:30–15h)</span></li>
+        <li><b>Miami-Dade Tax Collector</b> <span data-en="— several offices serving as drop-off centers">— varias oficinas como centro de acopio</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- HOSPITALES -->
+  <section id="hospitales" data-sec>
+    <div class="sec-head"><div class="ic" style="background:#0a8a8a"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 6v12M6 12h12"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div><h2 data-en="Hospitals and the injured">Hospitales y heridos</h2></div>
+    <p class="sec-desc" data-en="The health system is &lt;b&gt;overwhelmed and short on supplies&lt;/b&gt;. Call before transporting anyone. The full list with phone numbers and status is in the directories.">El sistema de salud está <b>desbordado y con falta de insumos</b>. Llama antes de trasladar a alguien. El listado completo con teléfonos y estado está en los directorios.</p>
+    <div class="grid">
+      <div class="card" data-item>
+        <h3>Listado de ingresos hospitalarios <span class="tag" data-en="updated">actualizado</span></h3>
+        <p data-en="Most up-to-date list of hospital admissions, shared by the medical team on the ground (Google Drive).">Listado más actualizado de ingresos hospitalarios, compartido por el equipo médico en terreno (Google Drive).</p>
+        <a class="go" href="https://drive.google.com/drive/folders/1o36ifaRz45kAs5rKzci49aD0mP5JB_YI" target="_blank" rel="noopener"><span data-en="Open the list">Abrir el listado</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3 data-en="Find an admitted patient">Buscar a un ingresado</h3>
+        <p data-en="Search for your relative by name or ID on the hospital platforms before going.">Busca a tu familiar por nombre o cédula en las plataformas de hospitales antes de ir.</p>
+        <a class="go" href="https://hospitalesenvenezuela.com/" target="_blank" rel="noopener"><span data-en="Hospitales en Venezuela">Hospitales en Venezuela</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3 data-en="Operating hospitals (Greater Caracas)">Hospitales operativos (Gran Caracas)</h3>
+        <p data-en="Treating the injured: Hospital Vargas · Hospital Domingo Luciani (overwhelmed) · Hospital Luis Razetti · 3 UN field hospitals in La Guaira.">Atendiendo heridos: Hospital Vargas · Hospital Domingo Luciani (desbordado) · Hospital Luis Razetti · 3 hospitales de campaña de la ONU en La Guaira.</p>
+        <a class="go" href="https://redayudavenezuela.com/" target="_blank" rel="noopener"><span data-en="See list with phone numbers">Ver lista con teléfonos</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOLUNTARIOS -->
+  <section id="voluntarios" data-sec>
+    <div class="sec-head"><div class="ic" style="background:#0a5bd6"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11"/></svg></div><h2 data-en="I want to help · volunteers">Quiero ayudar · voluntarios</h2></div>
+    <p class="sec-desc" data-en="If you're going to give your time or your profession, do it in a coordinated way. Going to the zone on your own can block the rescue teams.">Si vas a aportar tu tiempo o tu profesión, hazlo coordinado. Ir por cuenta propia a la zona puede bloquear a los rescatistas.</p>
+    <div class="grid">
+      <div class="card" data-item>
+        <h3 data-en="General volunteering">Voluntariado general</h3>
+        <p data-en="Register as a volunteer and see the specific needs (hands, transport, supplies) on the citizen network.">Regístrate como voluntario y mira las necesidades concretas (manos, transporte, insumos) en la red ciudadana.</p>
+        <a class="go" href="https://redayudavenezuela.com/" target="_blank" rel="noopener"><span data-en="Register">Registrarme</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3 data-en="Heading down to La Guaira (restricted access)">Bajar a La Guaira (acceso restringido)</h3>
+        <p data-en="Only with an assigned task. Volunteers and motorcyclists: register in person at the &lt;b&gt;Poliedro de Caracas&lt;/b&gt; for credentials before heading down.">Solo con tarea asignada. Voluntarios y motorizados: registro presencial en el <b>Poliedro de Caracas</b> para credencial antes de descender.</p>
+        <span class="go" style="color:var(--muted)" data-en="Point: Poliedro de Caracas">Punto: Poliedro de Caracas</span>
+      </div>
+      <div class="card" data-item>
+        <h3 data-en="Psychology professionals">Profesionales de psicología</h3>
+        <p data-en="If you're not yet on the public list, join the psychosocial support team by sending your details: &lt;b&gt;country · license number · phone prefix · first and last name · specialty.&lt;/b&gt;">Si aún no estás en la lista pública, súmate al apoyo psicosocial enviando tus datos: <b>país · colegiatura · prefijo de celular · nombre y apellido · especialidad.</b></p>
+        <a class="go" href="https://www.instagram.com/p/DaDc2ucgF9D/" target="_blank" rel="noopener"><span data-en="See the call">Ver la convocatoria</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REMESAS -->
+  <section id="remesas" data-sec>
+    <div class="sec-head"><div class="ic" style="background:#137a43"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><h2 data-en="Send money to families (remittances)">Enviar dinero a familias (remesas)</h2></div>
+    <p class="sec-desc" data-en="To send money directly to your family in Venezuela. Verify the recipient's details and make a small test transfer first.">Para mandar dinero directo a tu familia en Venezuela. Verifica los datos del receptor y haz un envío de prueba pequeño primero.</p>
+    <div class="grid">
+      <div class="card" data-item>
+        <h3>Ria Money Transfer <span class="tag ok" data-en="no fee">sin comisión</span></h3>
+        <p data-en="Transfers to Venezuela &lt;b&gt;with no fee until Jul 15, 2026&lt;/b&gt;. Pago Móvil or bank deposit; arrives in minutes.">Transferencias a Venezuela <b>sin comisión hasta el 15 jul 2026</b>. Pago Móvil o depósito a bancos; llega en minutos.</p>
+        <a class="go" href="https://www.riamoneytransfer.com/en-us/send-money-to-venezuela/" target="_blank" rel="noopener"><span data-en="Send money">Enviar dinero</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="card" data-item>
+        <h3>Zinli</h3>
+        <p data-en="Digital wallet to send dollars to anyone with a Zinli account using just their email.">Billetera digital para enviar dólares a cualquier persona con cuenta Zinli usando solo su correo.</p>
+        <span class="go" style="color:var(--muted)" data-en="Zinli app (Android / iOS)">App Zinli (Android / iOS)</span>
+      </div>
+      <div class="card" data-item>
+        <h3>Cruz Roja Colombiana</h3>
+        <p data-en="Cash donation through its official platform to support the humanitarian response.">Donación monetaria a través de su plataforma oficial para apoyar la respuesta humanitaria.</p>
+        <a class="go" href="https://ayuda.cruzrojacolombiana.org/" target="_blank" rel="noopener"><span data-en="Open">Abrir</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+    <div class="note" data-en="Note: &lt;b&gt;Zelle is not an international remittance&lt;/b&gt; (it only connects U.S. bank accounts). Use it only between organizations' accounts, not to &quot;send to Venezuela&quot; directly.">Ojo: <b>Zelle no es una remesa internacional</b> (solo conecta cuentas de bancos de EE.UU.). Usalo solo entre cuentas de organizaciones, no para "enviar a Venezuela" directo.</div>
+  </section>
+
+  <!-- EMERGENCIA -->
+  <section id="emergencia" data-sec>
+    <div class="sec-head"><div class="ic" style="background:#d12b2b"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></div><h2 data-en="Emergency lines">Líneas de emergencia</h2></div>
+    <p class="sec-desc" data-en="Save these numbers. &lt;b&gt;911&lt;/b&gt; is the main national line; the others vary by carrier.">Guarda estos números. El <b>911</b> es la línea principal nacional; los otros varían según tu operadora.</p>
+    <div class="nums">
+      <a class="num" data-item href="tel:911"><div class="n">911</div><div class="d" data-en="National line (Movistar)">Línea única nacional (Movistar)</div><span class="call" data-en="📞 Tap to call">📞 Tocar para llamar</span></a>
+      <a class="num" data-item href="tel:08007372282"><div class="n">0800-RESCATE</div><div class="d" data-en="Earthquake hotline · 0800-7372282">Línea del terremoto · 0800-7372282</div><span class="call" data-en="📞 Tap to call">📞 Tocar para llamar</span></a>
+      <a class="num" data-item href="tel:171"><div class="n">171</div><div class="d" data-en="Firefighters · CANTV landline">Bomberos · fijo CANTV</div><span class="call" data-en="📞 Tap to call">📞 Tocar para llamar</span></a>
+      <a class="num" data-item href="tel:112"><div class="n">112</div><div class="d" data-en="Emergency · Digitel">Emergencia · Digitel</div><span class="call" data-en="📞 Tap to call">📞 Tocar para llamar</span></a>
+      <a class="num" data-item href="tel:*1"><div class="n">*1</div><div class="d" data-en="Emergency · Movilnet">Emergencia · Movilnet</div><span class="call" data-en="📞 Tap to call">📞 Tocar para llamar</span></a>
+      <a class="num" data-item href="tel:+584122665945"><div class="n">+58 412 266 5945</div><div class="d" data-en="Red Cross · family search">Cruz Roja · búsqueda de familiares</div><span class="call" data-en="📞 Tap to call">📞 Tocar para llamar</span></a>
+    </div>
+  </section>
+
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<footer>
+  <div class="wrap">
+    <a class="share" id="shareWa" href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="#073"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.1.3.7 1.1 1.4 1.8 1 .8 1.7 1.1 2 1.2.2.1.4.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.2.1.4.2.5.3.1.2.1.6-.1 1.1Z"/></svg> <span data-en="Share on WhatsApp">Compartir por WhatsApp</span></a>
+    <div class="disc">
+      <h4 data-en="About this site">Sobre este sitio</h4>
+      <span data-en="A &lt;b&gt;citizen and grassroots initiative&lt;/b&gt; to centralize relief after the earthquakes of June 24, 2026 in Venezuela. &lt;b&gt;It is not an official channel&lt;/b&gt; and does not replace Civil Protection, rescue teams or consulates. We verify each link against media and official sources, but the situation changes by the hour: &lt;b&gt;always confirm before donating, sending or traveling.&lt;/b&gt; If a piece of information is outdated or you want to add a verified resource, let us know.">Iniciativa <b>ciudadana y solidaria</b> para centralizar la ayuda tras los terremotos del 24 de junio de 2026 en Venezuela. <b>No es un canal oficial</b> y no reemplaza a Protección Civil, cuerpos de rescate ni consulados. Verificamos cada enlace contra medios y fuentes oficiales, pero la situación cambia por hora: <b>confirmá siempre antes de donar, enviar o trasladarte.</b> Si un dato está desactualizado o quieres sumar un recurso verificado, avísanos.</span>
+    </div>
+    <div style="opacity:.7" data-en="Made with 💛💙❤️ for Venezuela · Updated Jun 28, 2026">Hecho con 💛💙❤️ para Venezuela · Actualizado 28 jun 2026</div>
+  </div>
+</footer>
+
+<script>
+  // ===== i18n: toggle ES / EN =====
+  (function(){
+    var STORAGE_KEY = 'av_lang';
+    var btnEs = document.getElementById('langEs');
+    var btnEn = document.getElementById('langEn');
+    var htmlEl = document.documentElement;
+
+    // Guardar el ES original de cada elemento traducible (texto + placeholder)
+    var nodes = Array.prototype.slice.call(document.querySelectorAll('[data-en]'));
+    nodes.forEach(function(el){ el.setAttribute('data-es', el.innerHTML); });
+    var phNodes = Array.prototype.slice.call(document.querySelectorAll('[data-en-placeholder]'));
+    phNodes.forEach(function(el){ el.setAttribute('data-es-placeholder', el.getAttribute('placeholder') || ''); });
+
+    function apply(lang){
+      var en = (lang === 'en');
+      nodes.forEach(function(el){
+        el.innerHTML = en ? el.getAttribute('data-en') : el.getAttribute('data-es');
+      });
+      phNodes.forEach(function(el){
+        el.setAttribute('placeholder', en ? el.getAttribute('data-en-placeholder') : el.getAttribute('data-es-placeholder'));
+      });
+      htmlEl.setAttribute('lang', en ? 'en' : 'es');
+      btnEs.setAttribute('aria-pressed', en ? 'false' : 'true');
+      btnEn.setAttribute('aria-pressed', en ? 'true' : 'false');
+      try{ localStorage.setItem(STORAGE_KEY, en ? 'en' : 'es'); }catch(e){}
+      document.dispatchEvent(new CustomEvent('langchange'));
+    }
+
+    btnEs.addEventListener('click', function(){ apply('es'); });
+    btnEn.addEventListener('click', function(){ apply('en'); });
+
+    // Idioma inicial: localStorage; default español
+    var saved = 'es';
+    try{ saved = localStorage.getItem(STORAGE_KEY) || 'es'; }catch(e){}
+    if(saved === 'en') apply('en');
+  })();
+
+  // ===== Sala situacional (dashboard en vivo) =====
+  (function(){
+    var grid = document.getElementById('salaGrid');
+    if(!grid) return;
+    var updEl = document.getElementById('salaUpdated');
+    var quakesBox = document.getElementById('quakesBox');
+    var quakesList = document.getElementById('quakesList');
+    var DATA = null;
+    function isEn(){ return document.documentElement.getAttribute('lang') === 'en'; }
+    function L(es,en){ return isEn() ? en : es; }
+    function nf(n){ try{ return new Intl.NumberFormat(isEn()?'en-US':'es-VE').format(n); }catch(e){ return ''+n; } }
+    function get(o,path){ return path.split('.').reduce(function(a,k){ return (a==null)?null:a[k]; }, o); }
+    function ago(ms){
+      var s=Math.max(0,Math.round((Date.now()-ms)/1000));
+      if(s<60) return L('hace segundos','just now');
+      var m=Math.round(s/60); if(m<60) return L('hace '+m+' min', m+' min ago');
+      var h=Math.round(m/60); return L('hace '+h+' h', h+' h ago');
+    }
+    var SPECS=[
+      {k:'oficial.fallecidos', es:'Fallecidos', en:'Deaths', c:'dead', s:'Oficial · preliminar', se:'Official · preliminary'},
+      {k:'oficial.heridos', es:'Heridos', en:'Injured', c:'dead', s:'Oficial · preliminar', se:'Official · preliminary'},
+      {k:'personas.por_localizar', es:'Por localizar', en:'To be located', c:'info', s:'Venezuela Te Busca', se:'Venezuela Te Busca'},
+      {k:'personas.localizadas', es:'Localizadas', en:'Located', c:'ok', s:'Venezuela Te Busca', se:'Venezuela Te Busca'},
+      {k:'personas.a_salvo', es:'Personas a salvo', en:'People safe', c:'ok', s:'Red Ayuda Venezuela', se:'Red Ayuda Venezuela'},
+      {k:'personas.ingresos_hosp', es:'Ingresos hospitalarios', en:'Hospital admissions', c:'warn', s:'hospitalesenvenezuela', se:'hospitalesenvenezuela'},
+      {k:'respuesta.voluntarios', es:'Voluntarios', en:'Volunteers', c:'info', s:'Red Ayuda Venezuela', se:'Red Ayuda Venezuela'},
+      {k:'respuesta.puntos', es:'Puntos de ayuda', en:'Aid points', c:'info', s:'Red Ayuda Venezuela', se:'Red Ayuda Venezuela'},
+      {k:'respuesta.necesidades', es:'Necesidades reportadas', en:'Reported needs', c:'warn', s:'Red Ayuda Venezuela', se:'Red Ayuda Venezuela'},
+      {k:'respuesta.ninos', es:'Niños reportados', en:'Children reported', c:'info', s:'Red Ayuda Venezuela', se:'Red Ayuda Venezuela'},
+      {k:'respuesta.danos', es:'Daños reportados', en:'Damage reports', c:'warn', s:'Red Ayuda Venezuela', se:'Red Ayuda Venezuela'}
+    ];
+    function render(){
+      if(!DATA){ return; }
+      grid.classList.remove('sala-skel');
+      var html='';
+      SPECS.forEach(function(sp){
+        var v=get(DATA,sp.k);
+        if(v==null) return;
+        html+='<div class="kpi '+sp.c+'"><div class="v">'+nf(v)+'</div><div class="l">'+L(sp.es,sp.en)+'</div><div class="src">'+L(sp.s,sp.se)+'</div></div>';
+      });
+      grid.innerHTML = html || ('<div class="sala-err">'+L('No pudimos cargar las cifras ahora.','Could not load the figures right now.')+'</div>');
+      var fr = DATA.frescura || {};
+      var live = L('Hospitales y réplicas en vivo','Hospitals & aftershocks live');
+      var extra = '';
+      if(fr.personas==='snapshot' || fr.oficial==='snapshot'){
+        var sd = fr.snapshot_at ? new Date(fr.snapshot_at) : null;
+        var sdtxt = sd ? sd.toLocaleString(isEn()?'en-US':'es-VE',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}) : '';
+        extra = ' · ' + L('otras cifras: última lectura '+sdtxt, 'other figures: last read '+sdtxt);
+      }
+      updEl.innerHTML='<span class="dotlive"></span> '+live+extra;
+      if(DATA.sismos && DATA.sismos.length){
+        var q='';
+        DATA.sismos.forEach(function(s){
+          var when = s.time ? ago(s.time) : '';
+          q+='<div class="quake"><span class="mg">M '+(s.mag!=null?(+s.mag).toFixed(1):'?')+'</span><span class="pl">'+(s.place||'')+'</span><span class="tm">'+when+'</span></div>';
+        });
+        quakesList.innerHTML=q; quakesBox.hidden=false;
+      }
+    }
+    function summaryText(){
+      if(!DATA) return location.href;
+      var lines=[L('📊 Venezuela · Terremoto 2026 — situación:','📊 Venezuela · 2026 Earthquake — situation:')];
+      function add(label,val){ if(val!=null) lines.push(label+': '+nf(val)); }
+      add(L('🕯️ Fallecidos (oficial)','🕯️ Deaths (official)'), get(DATA,'oficial.fallecidos'));
+      add(L('🚑 Heridos (oficial)','🚑 Injured (official)'), get(DATA,'oficial.heridos'));
+      add(L('🔎 Por localizar','🔎 To be located'), get(DATA,'personas.por_localizar'));
+      add(L('✅ Localizadas','✅ Located'), get(DATA,'personas.localizadas'));
+      add(L('🏥 Ingresos hospitalarios','🏥 Hospital admissions'), get(DATA,'personas.ingresos_hosp'));
+      add(L('🙋 Voluntarios','🙋 Volunteers'), get(DATA,'respuesta.voluntarios'));
+      lines.push('');
+      lines.push(L('🆘 Toda la ayuda verificada: ','🆘 All verified relief: ')+location.origin+'/');
+      return lines.join('\n');
+    }
+    var sBtn=document.getElementById('shareStats');
+    if(sBtn) sBtn.addEventListener('click',function(){ window.open('https://wa.me/?text='+encodeURIComponent(summaryText()),'_blank'); });
+    var iBtn=document.getElementById('statusImg');
+    if(iBtn) iBtn.addEventListener('click', makeStatusImage);
+
+    function roundRect(ctx,x0,y0,w,h,r){ctx.beginPath();ctx.moveTo(x0+r,y0);ctx.arcTo(x0+w,y0,x0+w,y0+h,r);ctx.arcTo(x0+w,y0+h,x0,y0+h,r);ctx.arcTo(x0,y0+h,x0,y0,r);ctx.arcTo(x0,y0,x0+w,y0,r);ctx.closePath();}
+    function makeStatusImage(){
+      var W=1080,H=1920,c=document.createElement('canvas');c.width=W;c.height=H;var x=c.getContext('2d');
+      x.fillStyle='#0e1b2e';x.fillRect(0,0,W,H);
+      var sw=W/3;x.fillStyle='#FCD116';x.fillRect(0,0,sw,18);x.fillStyle='#003DA5';x.fillRect(sw,0,sw,18);x.fillStyle='#CF142B';x.fillRect(sw*2,0,sw,18);
+      x.textAlign='left';
+      x.fillStyle='#fff';x.font='800 66px -apple-system,Segoe UI,Roboto,Arial';x.fillText('Venezuela',80,185);
+      x.fillStyle='#FCD116';x.fillText(L('Terremoto 2026','2026 Earthquake'),80,268);
+      x.fillStyle='#9fb2cd';x.font='600 34px -apple-system,Segoe UI,Roboto,Arial';
+      x.fillText(L('Sala situacional · ','Situation room · ')+new Date().toLocaleDateString(isEn()?'en-US':'es-VE'),80,338);
+      var items=[];
+      function pushI(lbl,val,col){ if(val!=null) items.push({l:lbl,v:nf(val),c:col}); }
+      pushI(L('Fallecidos (oficial)','Deaths (official)'),get(DATA,'oficial.fallecidos'),'#ff6b6b');
+      pushI(L('Heridos (oficial)','Injured (official)'),get(DATA,'oficial.heridos'),'#ff6b6b');
+      pushI(L('Por localizar','To be located'),get(DATA,'personas.por_localizar'),'#7db4ff');
+      pushI(L('Localizadas','Located'),get(DATA,'personas.localizadas'),'#5ee08a');
+      pushI(L('Ingresos hospitalarios','Hospital admissions'),get(DATA,'personas.ingresos_hosp'),'#ffb15e');
+      pushI(L('Voluntarios','Volunteers'),get(DATA,'respuesta.voluntarios'),'#7db4ff');
+      var y=430;
+      items.slice(0,6).forEach(function(it){
+        x.fillStyle='rgba(255,255,255,.06)';roundRect(x,80,y,W-160,185,24);x.fill();
+        x.fillStyle=it.c;x.font='800 90px -apple-system,Segoe UI,Roboto,Arial';x.fillText(it.v,120,y+108);
+        x.fillStyle='#c5d4ea';x.font='600 36px -apple-system,Segoe UI,Roboto,Arial';x.fillText(it.l,120,y+160);
+        y+=212;
+      });
+      x.fillStyle='#FCD116';x.font='800 42px -apple-system,Segoe UI,Roboto,Arial';x.fillText(location.host,80,H-145);
+      x.fillStyle='#9fb2cd';x.font='600 32px -apple-system,Segoe UI,Roboto,Arial';
+      x.fillText(L('Toda la ayuda verificada en un solo lugar','All verified relief in one place'),80,H-95);
+      c.toBlob(function(b){
+        if(!b) return;
+        var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='situacion-venezuela.png';
+        document.body.appendChild(a);a.click();document.body.removeChild(a);
+        setTimeout(function(){URL.revokeObjectURL(a.href);},3000);
+      },'image/png');
+    }
+
+    document.addEventListener('langchange', render);
+    fetch('/api/agregado').then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(d){
+      DATA=d; render();
+    }).catch(function(){
+      grid.classList.remove('sala-skel');
+      grid.innerHTML='<div class="sala-err">'+L('No pudimos cargar las cifras en vivo ahora mismo. Las plataformas siguen activas — entra a cualquiera desde las secciones de abajo.','We could not load live figures right now. The platforms are still active — open any from the sections below.')+'</div>';
+      updEl.innerHTML='';
+    });
+  })();
+
+  // ===== Multibúsqueda de personas =====
+  (function(){
+    var form = document.getElementById('finderForm');
+    if(!form) return;
+    var input = document.getElementById('pq');
+    var actions = document.getElementById('finderActions');
+    var hint = document.getElementById('finderHint');
+    var toastEl = document.getElementById('toast');
+    function isEn(){ return document.documentElement.getAttribute('lang') === 'en'; }
+    function L(es,en){ return isEn() ? en : es; }
+    function enc(s){ return encodeURIComponent(s); }
+    function copy(t){
+      try{ if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(t); return; } }catch(e){}
+      try{
+        var ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      }catch(e){}
+    }
+    function showToast(m){
+      if(!toastEl) return;
+      toastEl.textContent = m; toastEl.classList.add('show');
+      clearTimeout(toastEl._t); toastEl._t = setTimeout(function(){ toastEl.classList.remove('show'); }, 5200);
+    }
+    function gsite(site, q){ return 'https://www.google.com/search?q=' + enc('site:' + site + ' ' + q); }
+
+    function run(){
+      var q = (input.value || '').trim();
+      if(!q){ input.focus(); return; }
+      copy(q);
+      var vtb = 'https://venezuelatebusca.com/?query=' + enc(q);
+      var all = 'https://www.google.com/search?q=' + enc(q + ' (site:venezuelatebusca.com OR site:redayudavenezuela.com OR site:desaparecidosterremotovenezuela.com OR site:hospitalesenvenezuela.com)');
+      var links = [
+        { u: all, n: L('Buscar en TODAS a la vez','Search ALL at once'), t: L('Google · 1 vista','Google · 1 view'), hi: true },
+        { u: vtb, n: 'Venezuela Te Busca', t: L('resultados directos','direct results') },
+        { u: gsite('redayudavenezuela.com', q), n: 'Red Ayuda Venezuela', t: L('vía Google','via Google') },
+        { u: gsite('desaparecidosterremotovenezuela.com', q), n: 'Desaparecidos Terremoto VE', t: L('vía Google','via Google') },
+        { u: gsite('hospitalesenvenezuela.com', q), n: 'Hospitales en Venezuela', t: L('vía Google','via Google') }
+      ];
+      actions.innerHTML = '';
+      links.forEach(function(l){
+        var a = document.createElement('a');
+        a.href = l.u; a.target = '_blank'; a.rel = 'noopener';
+        if (l.hi) a.className = 'hi';
+        a.innerHTML = (l.t ? '<span class="pf">' + l.t + '</span> ' : '') + l.n + ' ↗';
+        actions.appendChild(a);
+      });
+      actions.hidden = false;
+      hint.hidden = false;
+      hint.textContent = L('💡 Copiamos el nombre. Si una plataforma no muestra resultados, pégalo (Ctrl/⌘+V) en su buscador.',
+                           '💡 We copied the name. If a platform shows nothing, paste it (Ctrl/⌘+V) into its search box.');
+      window.open(vtb, '_blank', 'noopener');
+      showToast(L('✓ Abrimos «Venezuela Te Busca» con resultados y copiamos el nombre. Toca las demás plataformas abajo.',
+                  '✓ We opened “Venezuela Te Busca” with results and copied the name. Tap the other platforms below.'));
+    }
+    form.addEventListener('submit', function(e){ e.preventDefault(); run(); });
+  })();
+
+  // ===== Plataformas nuevas (descubiertas por el robot, ya aprobadas) =====
+  (function(){
+    var grid = document.querySelector('#directorios .grid');
+    if(!grid) return;
+    function isEn(){ return document.documentElement.getAttribute('lang')==='en'; }
+    function L(es,en){ return isEn()?en:es; }
+    var DATA=null;
+    function render(){
+      if(!DATA) return;
+      Array.prototype.slice.call(grid.querySelectorAll('[data-discovered]')).forEach(function(n){ n.remove(); });
+      var old=document.getElementById('candNote'); if(old) old.remove();
+      (DATA.aprobados||[]).forEach(function(c){
+        var d=document.createElement('div'); d.className='card'; d.setAttribute('data-item',''); d.setAttribute('data-discovered','');
+        d.innerHTML='<h3>'+(c.title||c.domain)+' <span class="tag ok">'+L('nueva','new')+'</span></h3>'+
+          '<p>'+L('Plataforma de ayuda detectada por el robot y verificada por el equipo.','Aid platform detected by the robot and verified by the team.')+'</p>'+
+          '<a class="go" href="'+c.url+'" target="_blank" rel="noopener"><span>'+L('Abrir ','Open ')+c.domain+'</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>';
+        grid.appendChild(d);
+      });
+      if(DATA.pendientes>0){
+        var p=document.createElement('div'); p.className='note'; p.id='candNote';
+        p.textContent=L('🔎 '+DATA.pendientes+' plataforma(s) nueva(s) detectada(s) por el robot, en revisión antes de publicarse.','🔎 '+DATA.pendientes+' new platform(s) detected by the robot, under review before publishing.');
+        grid.parentNode.insertBefore(p, grid.nextSibling);
+      }
+    }
+    document.addEventListener('langchange', render);
+    fetch('/api/candidatos').then(function(r){ return r.json(); }).then(function(d){ DATA=d; render(); }).catch(function(){});
+  })();
+
+  // Compartir WhatsApp
+  (function(){
+    var a = document.getElementById('shareWa');
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var en = document.documentElement.getAttribute('lang') === 'en';
+      var txt = en
+        ? 'Ayuda Venezuela · 2026 Earthquake — all the verified relief in one place: ' + location.href
+        : 'Ayuda Venezuela · Terremoto 2026 — toda la ayuda verificada en un solo lugar: ' + location.href;
+      window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank');
+    });
+  })();
+</script>
+</body>
+</html>

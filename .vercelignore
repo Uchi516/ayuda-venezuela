@@ -1,0 +1,8 @@
+_research/
+node_modules/
+scripts/
+.github/
+data/
+package.json
+package-lock.json
+README.md

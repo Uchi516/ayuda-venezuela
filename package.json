@@ -1,0 +1,13 @@
+{
+  "name": "ayuda-venezuela-robot",
+  "private": true,
+  "type": "module",
+  "description": "Robot de refresco de cifras + descubrimiento de plataformas para el hub de ayuda del terremoto de Venezuela 2026.",
+  "scripts": {
+    "scrape": "node scripts/scrape.mjs",
+    "discover": "node scripts/discover.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.48.0"
+  }
+}

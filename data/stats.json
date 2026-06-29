@@ -1,0 +1,5 @@
+{
+  "vtb": { "total": 77584, "missing": 53371, "found": 24213, "at": "2026-06-29T01:10:00Z" },
+  "red": { "salvo": 9979, "desaparecidos": 43826, "hospital": 8649, "voluntarios": 985, "puntos": 262, "necesidades": 566, "danos": 1182, "ninos": 250, "denuncias": 239, "atrapados": 134, "at": "2026-06-29T01:10:00Z" },
+  "oficial": { "fallecidos": 1450, "heridos": 3150, "source": "Cifra oficial preliminar", "at": "2026-06-28" }
+}

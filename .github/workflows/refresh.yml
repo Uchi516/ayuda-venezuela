@@ -1,0 +1,48 @@
+name: refresh-sala-situacional
+
+on:
+  schedule:
+    - cron: '*/20 * * * *'   # cada 20 minutos
+  workflow_dispatch: {}        # permite dispararlo a mano
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-sala
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar Playwright (chromium)
+        run: |
+          npm install playwright@^1.48.0
+          npx playwright install --with-deps chromium
+
+      - name: Refrescar cifras (scrape)
+        run: node scripts/scrape.mjs
+        continue-on-error: true
+
+      - name: Descubrir nuevas plataformas
+        run: node scripts/discover.mjs
+        continue-on-error: true
+
+      - name: Commit de datos
+        run: |
+          git config user.name "ayuda-venezuela-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "Sin cambios en data/"
+          else
+            git commit -m "refresh: $(date -u +%FT%TZ)"
+            git push
+          fi
