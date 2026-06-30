@@ -57,9 +57,7 @@ export default async function handler(req, res) {
     updated_at: new Date().toISOString(),
     oficial: { fallecidos: num(oficial.fallecidos), heridos: num(oficial.heridos), source: oficial.source || 'Cifra oficial preliminar', at: oficial.at || null },
     personas: {
-      registradas: num(vtb.total),
-      por_localizar: num(vtb.missing),
-      localizadas: num(vtb.found),
+      desaparecidos: num(red.desaparecidos),
       a_salvo: num(red.salvo),
       ingresos_hosp: H ? num(H.pacientes) : null
     },
@@ -75,7 +73,7 @@ export default async function handler(req, res) {
     frescura: {
       hospitales: H ? 'live' : 'sin dato',
       sismos: U ? 'live' : 'sin dato',
-      personas_at: vtb.at || red.at || null,
+      personas_at: red.at || vtb.at || null,
       oficial_at: oficial.at || null,
       robot: robotLive ? 'on' : 'fallback'
     },

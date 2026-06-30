@@ -699,14 +699,12 @@
     var SPECS=[
       {k:'oficial.fallecidos', es:'Fallecidos', en:'Deaths', c:'dead', s:'Oficial · preliminar', se:'Official · preliminary'},
       {k:'oficial.heridos', es:'Heridos', en:'Injured', c:'dead', s:'Oficial · preliminar', se:'Official · preliminary'},
-      {k:'personas.por_localizar', es:'Por localizar', en:'To be located', c:'info', s:'Venezuela Te Busca', se:'Venezuela Te Busca'},
-      {k:'personas.localizadas', es:'Localizadas', en:'Located', c:'ok', s:'Venezuela Te Busca', se:'Venezuela Te Busca'},
+      {k:'personas.desaparecidos', es:'Desaparecidos', en:'Missing', c:'info', s:'Red Ayuda Venezuela', se:'Red Ayuda Venezuela'},
       {k:'personas.a_salvo', es:'Personas a salvo', en:'People safe', c:'ok', s:'Red Ayuda Venezuela', se:'Red Ayuda Venezuela'},
       {k:'personas.ingresos_hosp', es:'Ingresos hospitalarios', en:'Hospital admissions', c:'warn', s:'hospitalesenvenezuela', se:'hospitalesenvenezuela'},
       {k:'respuesta.voluntarios', es:'Voluntarios', en:'Volunteers', c:'info', s:'Red Ayuda Venezuela', se:'Red Ayuda Venezuela'},
       {k:'respuesta.puntos', es:'Puntos de ayuda', en:'Aid points', c:'info', s:'Red Ayuda Venezuela', se:'Red Ayuda Venezuela'},
       {k:'respuesta.necesidades', es:'Necesidades reportadas', en:'Reported needs', c:'warn', s:'Red Ayuda Venezuela', se:'Red Ayuda Venezuela'},
-      {k:'respuesta.ninos', es:'Niños reportados', en:'Children reported', c:'info', s:'Red Ayuda Venezuela', se:'Red Ayuda Venezuela'},
       {k:'respuesta.danos', es:'Daños reportados', en:'Damage reports', c:'warn', s:'Red Ayuda Venezuela', se:'Red Ayuda Venezuela'}
     ];
     function render(){
@@ -743,8 +741,8 @@
       function add(label,val){ if(val!=null) lines.push(label+': '+nf(val)); }
       add(L('🕯️ Fallecidos (oficial)','🕯️ Deaths (official)'), get(DATA,'oficial.fallecidos'));
       add(L('🚑 Heridos (oficial)','🚑 Injured (official)'), get(DATA,'oficial.heridos'));
-      add(L('🔎 Por localizar','🔎 To be located'), get(DATA,'personas.por_localizar'));
-      add(L('✅ Localizadas','✅ Located'), get(DATA,'personas.localizadas'));
+      add(L('🔎 Desaparecidos','🔎 Missing'), get(DATA,'personas.desaparecidos'));
+      add(L('✅ Personas a salvo','✅ People safe'), get(DATA,'personas.a_salvo'));
       add(L('🏥 Ingresos hospitalarios','🏥 Hospital admissions'), get(DATA,'personas.ingresos_hosp'));
       add(L('🙋 Voluntarios','🙋 Volunteers'), get(DATA,'respuesta.voluntarios'));
       lines.push('');
@@ -770,8 +768,8 @@
       function pushI(lbl,val,col){ if(val!=null) items.push({l:lbl,v:nf(val),c:col}); }
       pushI(L('Fallecidos (oficial)','Deaths (official)'),get(DATA,'oficial.fallecidos'),'#ff6b6b');
       pushI(L('Heridos (oficial)','Injured (official)'),get(DATA,'oficial.heridos'),'#ff6b6b');
-      pushI(L('Por localizar','To be located'),get(DATA,'personas.por_localizar'),'#7db4ff');
-      pushI(L('Localizadas','Located'),get(DATA,'personas.localizadas'),'#5ee08a');
+      pushI(L('Desaparecidos','Missing'),get(DATA,'personas.desaparecidos'),'#7db4ff');
+      pushI(L('Personas a salvo','People safe'),get(DATA,'personas.a_salvo'),'#5ee08a');
       pushI(L('Ingresos hospitalarios','Hospital admissions'),get(DATA,'personas.ingresos_hosp'),'#ffb15e');
       pushI(L('Voluntarios','Volunteers'),get(DATA,'respuesta.voluntarios'),'#7db4ff');
       var y=430;
