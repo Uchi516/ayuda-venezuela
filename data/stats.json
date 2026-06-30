@@ -7,21 +7,21 @@
   },
   "red": {
     "salvo": 9860,
-    "desaparecidos": 43600,
+    "desaparecidos": 43595,
     "hospital": 10319,
-    "voluntarios": 1113,
-    "puntos": 289,
-    "necesidades": 613,
-    "danos": 1224,
+    "voluntarios": 1116,
+    "puntos": 294,
+    "necesidades": 654,
+    "danos": 1226,
     "ninos": 1726,
-    "denuncias": 220,
+    "denuncias": 205,
     "atrapados": 134,
-    "at": "2026-06-30T19:12:28.609Z"
+    "at": "2026-06-30T21:10:11.331Z"
   },
   "oficial": {
     "fallecidos": 1943,
     "heridos": 10571,
     "source": "Cifra oficial preliminar (vía Wikipedia) — en actualización",
-    "at": "2026-06-30T19:12:10.848+00:00"
+    "at": "2026-06-30T21:09:55.308+00:00"
   }
 }
