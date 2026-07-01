@@ -9,19 +9,19 @@
     "salvo": 9813,
     "desaparecidos": 43597,
     "hospital": 10438,
-    "voluntarios": 1127,
+    "voluntarios": 1128,
     "puntos": 296,
-    "necesidades": 649,
-    "danos": 1230,
+    "necesidades": 645,
+    "danos": 1232,
     "ninos": 1787,
     "denuncias": 205,
     "atrapados": 134,
-    "at": "2026-07-01T08:53:43.720Z"
+    "at": "2026-07-01T12:11:47.287Z"
   },
   "oficial": {
     "fallecidos": 1943,
     "heridos": 10571,
     "source": "Cifra oficial preliminar (vía Wikipedia) — en actualización",
-    "at": "2026-07-01T08:53:21.582+00:00"
+    "at": "2026-07-01T12:10:58.372+00:00"
   }
 }
