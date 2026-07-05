@@ -1,13 +1,13 @@
 {
   "vtb": {
-    "total": 43847,
-    "missing": 18224,
+    "total": 43848,
+    "missing": 18225,
     "found": 25623,
-    "at": "2026-07-05T17:16:20.211Z"
+    "at": "2026-07-05T18:33:11.791Z"
   },
   "red": {
-    "salvo": 9777,
-    "desaparecidos": 43651,
+    "salvo": 9778,
+    "desaparecidos": 43638,
     "hospital": 10434,
     "voluntarios": 1169,
     "puntos": 300,
@@ -16,12 +16,12 @@
     "ninos": 1879,
     "denuncias": 236,
     "atrapados": 134,
-    "at": "2026-07-05T17:16:20.211Z"
+    "at": "2026-07-05T18:33:11.791Z"
   },
   "oficial": {
     "fallecidos": 2954,
     "heridos": 16000,
     "source": "Cifra oficial preliminar (vía Wikipedia) — en actualización",
-    "at": "2026-07-05T17:15:06.972+00:00"
+    "at": "2026-07-05T18:33:00.052+00:00"
   }
 }
