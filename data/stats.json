@@ -3,12 +3,12 @@
     "total": 44315,
     "missing": 18013,
     "found": 26302,
-    "at": "2026-07-11T19:50:27.808Z"
+    "at": "2026-07-11T20:54:18.230Z"
   },
   "red": {
     "salvo": 9772,
     "desaparecidos": 43666,
-    "hospital": 10075,
+    "hospital": 10076,
     "voluntarios": 1177,
     "puntos": 304,
     "necesidades": 959,
@@ -16,7 +16,7 @@
     "ninos": 2203,
     "denuncias": 236,
     "atrapados": 134,
-    "at": "2026-07-11T19:50:27.808Z"
+    "at": "2026-07-11T20:54:18.230Z"
   },
   "oficial": {
     "fallecidos": 4000,
