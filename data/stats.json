@@ -1,14 +1,14 @@
 {
   "vtb": {
     "total": 44315,
-    "missing": 18012,
-    "found": 26303,
-    "at": "2026-07-11T21:54:16.719Z"
+    "missing": 18011,
+    "found": 26304,
+    "at": "2026-07-11T22:54:00.492Z"
   },
   "red": {
     "salvo": 9772,
     "desaparecidos": 43666,
-    "hospital": 10076,
+    "hospital": 10077,
     "voluntarios": 1177,
     "puntos": 304,
     "necesidades": 959,
@@ -16,7 +16,7 @@
     "ninos": 2203,
     "denuncias": 236,
     "atrapados": 134,
-    "at": "2026-07-11T21:54:16.719Z"
+    "at": "2026-07-11T22:54:00.492Z"
   },
   "oficial": {
     "fallecidos": 4000,
