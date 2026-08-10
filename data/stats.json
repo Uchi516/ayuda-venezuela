@@ -1,22 +1,22 @@
 {
   "vtb": {
     "total": 44289,
-    "missing": 17792,
-    "found": 26497,
-    "at": "2026-08-09T23:51:52.527Z"
+    "missing": 17791,
+    "found": 26498,
+    "at": "2026-08-10T02:02:41.963Z"
   },
   "red": {
-    "salvo": 9772,
-    "desaparecidos": 43674,
-    "hospital": 10080,
-    "voluntarios": 1177,
-    "puntos": 304,
-    "necesidades": 956,
-    "danos": 1392,
-    "ninos": 2206,
-    "denuncias": 237,
-    "atrapados": 134,
-    "at": "2026-08-09T23:51:52.527Z"
+    "salvo": 0,
+    "desaparecidos": 0,
+    "hospital": 0,
+    "voluntarios": 0,
+    "puntos": 0,
+    "necesidades": 0,
+    "danos": 0,
+    "ninos": 0,
+    "denuncias": 0,
+    "atrapados": 0,
+    "at": "2026-08-10T02:02:41.963Z"
   },
   "oficial": {
     "fallecidos": 4829,
